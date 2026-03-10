@@ -1,0 +1,52 @@
+@import url("https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,100..1000&display=swap");
+
+:root {
+    --c-glass: #bbbbbc;
+    --c-light: #fff;
+    --c-dark: #000;
+    --glass-reflex-light: 1;
+    --glass-reflex-dark: 1;
+    --saturation: 180%;
+}
+
+* { 
+    margin: 0; 
+    padding: 0; 
+    box-sizing: border-box; 
+}
+
+body {
+    background-color: #000; 
+    overflow: hidden; 
+    font-family: "DM Sans", sans-serif; 
+}
+
+#animated-bg { 
+    position: fixed; 
+    inset: 0; 
+    z-index: -1; 
+}
+
+.content { 
+    padding-top: 20vh; 
+    display: flex; 
+    flex-direction: column; 
+    align-items: center; 
+    justify-content: center; 
+    color: white; 
+    text-align: center; 
+}
+
+.titulo { 
+    font-size: 3.5rem; 
+    font-weight: 800; 
+    letter-spacing: -0.04em; 
+}
+
+.titulo, .content p { 
+    pointer-events: auto; 
+}
+
+/* IMPORTACIONES (Asegúrate de que la ruta sea correcta según tu carpeta) */
+@import url('navliquid.css');
+@import url('liquid-card.css');

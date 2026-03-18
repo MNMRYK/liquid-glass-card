@@ -18,36 +18,44 @@ function initBackground() {
 // ==========================================
 // 2. LÓGICA DEL MENÚ Y NAVEGACIÓN
 // ==========================================
+
 function initNav() {
     const links = document.querySelectorAll('.menu a');
     const indicator = document.querySelector('.nav-indicator');
 
     function move(el) {
-        // Obtenemos el LI padre para calcular la posición real en la lista
+        if(!el || !indicator) return;
         const parentLi = el.parentElement;
 
         gsap.to(indicator, {
-            left: parentLi.offsetLeft,
+            // Usamos la posición del LI respecto a su padre (el UL)
+            x: parentLi.offsetLeft, 
             width: parentLi.offsetWidth,
-            duration: 1.2,
-            ease: "elastic.out(1, 0.9)"
+            duration: 0.5,
+            ease: "power2.out"
         });
-
-        // Efecto "Gota" (Se estira al viajar)
-        gsap.fromTo(indicator,
-            { scaleX: 1.2, scaleY: 1.2 },
-            { scaleX: 1, scaleY: 1, duration: 0.7, ease: "back.out(2)" }
-        );
     }
 
-    // Posición inicial en el primer elemento
-    if (links.length > 0) move(links[0]);
+    // 1. Posición inicial: Esperamos un suspiro a que el CSS asiente
+    setTimeout(() => {
+        const activeLink = document.querySelector('.menu a.active') || links[0];
+        move(activeLink);
+    }, 200);
 
+    // 2. Eventos de click
     links.forEach(link => {
         link.addEventListener('click', (e) => {
             e.preventDefault();
-            move(e.currentTarget); // Mueve la gota al enlace clicado
+            links.forEach(l => l.classList.remove('active'));
+            link.classList.add('active');
+            move(link);
         });
+    });
+
+    // 3. Re-ajustar si el usuario gira el móvil o cambia el tamaño de ventana
+    window.addEventListener('resize', () => {
+        const active = document.querySelector('.menu a.active') || links[0];
+        move(active);
     });
 }
 
@@ -55,40 +63,40 @@ function initNav() {
 // 3. ANIMACIONES GSAP (Entradas y Flotación)
 // ==========================================
 function initAnimations() {
-    // Línea de tiempo de entrada inicial
-    const tl = gsap.timeline();
+    // 1. Limpieza para evitar duplicados
+    gsap.killTweensOf(".menu");
+    gsap.killTweensOf(".card-entry");
 
-    tl.from(".menu", {
-        y: -50,
+    // 2. Forzamos el estado inicial de centrado para el menú
+    // xPercent: -50 es el equivalente a translateX(-50%)
+    gsap.set(".menu", { xPercent: -50, left: "50%" });
+
+    // 3. Animación de entrada (Caída inicial)
+    gsap.from(".menu", {
+        y: -7,
         opacity: 0,
-        duration: 1.2,
+        duration: 2,
         ease: "power3.out"
-    })
-    .from(".menu li", {
-        opacity: 0,
-        y: 20,
-        stagger: 0.1
-    }, "-=0.8");
+    });
 
-    // Flotación suave constante (menú)
+    // 4. FLOTACIÓN DEL MENÚ (Para todos los dispositivos)
     gsap.to(".menu", {
-        y: "+=10",
+        y: 4, 
+        xPercent: -50, // Mantenemos el centrado horizontal en cada frame
         duration: 2.5,
         repeat: -1,
         yoyo: true,
         ease: "sine.inOut"
     });
 
-    // Flotación constante para las tarjetas (desincronizada del menú)
+    // FLOTACIÓN DE LAS CARDS (Más suave para tarjetas grandes)
     gsap.to(".card-entry", {
-        y: "+=15",
-        duration: 3,
+        y: -15, // Bajamos de 15 a 10 para que sea más elegante
+        duration: 3, // Un poco más lento
         repeat: -1,
         yoyo: true,
         ease: "sine.inOut",
-        stagger: {
-            each: 0.5,
-        }
+        stagger: 0.6 // El efecto "ola" entre tarjetas se nota más
     });
 }
 

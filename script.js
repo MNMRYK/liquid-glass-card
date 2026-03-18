@@ -12,6 +12,8 @@ function initBackground() {
         baseColor: 0x50505,
         blurFactor: 0.60,
         speed: 1.00
+        scale: 1.00,
+        scaleMobile: 1.00
     });
 }
 

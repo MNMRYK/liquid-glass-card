@@ -19,7 +19,7 @@
 }
 
 body {
-    background-color: #000; 
+    background-color: #050505;
     /* Cambiamos hidden por clip o solo x para permitir scroll vertical */
     overflow-x: hidden; 
     overflow-y: auto; 
@@ -29,8 +29,13 @@ body {
 
 #animated-bg { 
     position: fixed; 
-    inset: 0; 
-    z-index: -1; 
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: -1;
+    /* Esto ayuda a que el fondo cubra áreas de sistema en móviles */
+    min-height: -webkit-fill-available;
 }
 
 .content { 

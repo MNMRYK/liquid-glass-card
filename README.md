@@ -5,4 +5,4 @@ Liquid Glass Iphone Card + Nav + Fondo Gsap
   <img src="liquid-glass.gif" alt="Liquid Glass">
 </div>
 
-https://mnmryk.github.io/liquid-glass-card/
+[Ver Proyecto en Vivo](https://mnmryk.github.io/liquid-glass-card/).

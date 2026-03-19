@@ -86,7 +86,7 @@ body {
     /* 2. Reducimos el espacio entre el título y el subtítulo */
     .titulo {
         font-size: 2.5rem !important; /* Un poco más pequeño para que no ocupe tanto */
-        margin-top: 40px !important;
+        margin-top: 30px !important;
 
     }
 

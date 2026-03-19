@@ -5,7 +5,6 @@
     /* CENTRADO UNIFICADO PARA PC Y MÓVIL */
     left: 50%;
     transform: translateX(-50%); 
-    
     width: fit-content;
     z-index: 100;
     padding: 8px 12px;
@@ -66,12 +65,12 @@
         position: fixed !important;
         top: 25px !important;
         /* Usamos un ancho fijo que quepa en cualquier móvil */
-        width: 80vw !important; 
-        max-width: 340px !important;
+        width: 93vw !important; 
+        max-width: 360px !important;
         left: 50% !important; /* Volvemos al clásico */
         right: 0 !important;
         margin: 0 !important; /* Centrado absoluto */
-        padding: 6px !important;
+        padding: 8px !important;
         box-sizing: border-box !important;
         transform: translateX(-50%); /* Forzamos el centrado manual */
         overflow: hidden !important; /* Para que la gota no estire el menú */
@@ -90,8 +89,8 @@
 
     .menu a {
         /* REDUCIMOS EL PADDING PARA QUE QUEPAN */
-        padding: 10px 0 !important; 
-        font-size: 11px !important; /* Un pelín más pequeña para que no rompa */
+        padding: 10px 15px !important; 
+        font-size: 0.9rem !important; /* Un pelín más pequeña para que no rompa */
         font-weight: 600; /* Un poco más de grosor */
         width: 100% !important;
         text-align: center !important;

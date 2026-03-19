@@ -1,21 +1,33 @@
 // ==========================================
 // 1. CONFIGURACIÓN DEL FONDO (Vanta.js)
 // ==========================================
+let vantaEffect = null; 
+
 function initBackground() {
-    VANTA.FOG({
+    if (vantaEffect) vantaEffect.destroy();
+
+    vantaEffect = VANTA.FOG({
         el: "#animated-bg",
         mouseControls: true,
         touchControls: true,
-        highlightColor: 0x222222,
-        midColor: 0x111111,
+        gyroControls: false,
+        minHeight: window.innerHeight, // Forzamos el alto de la ventana
+        minWidth: window.innerWidth,
+        highlightColor: 0xff2222,
+        midColor: 0x440000,
         lowColor: 0x0,
-        baseColor: 0x50505,
+        baseColor: 0x050505,
         blurFactor: 0.60,
         speed: 1.00,
         scale: 1.00,
         scaleMobile: 1.00
     });
 }
+
+// Escuchamos el cambio de orientación para re-dibujar el fondo
+window.addEventListener('orientationchange', () => {
+    setTimeout(initBackground, 200);
+});
 
 // ==========================================
 // 2. LÓGICA DEL MENÚ Y NAVEGACIÓN
@@ -105,9 +117,9 @@ function initAnimations() {
 // ==========================================
 // EJECUCIÓN (Llamamos a las funciones)
 // ==========================================
-initBackground();
 
 window.addEventListener('load', () => {
     initNav();
     initAnimations();
+    initBackground(); // ¡No olvides llamarla aquí también!
 });

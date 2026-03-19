@@ -18,24 +18,31 @@
     box-sizing: border-box; 
 }
 
+
 body {
     background-color: #050505;
-    /* Cambiamos hidden por clip o solo x para permitir scroll vertical */
+    font-family: "DM Sans", sans-serif; 
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    
+    /* EXPLICACIÓN DE LAS ALTURAS: */
+    min-height: 100vh; /* Altura mínima: el 100% de la pantalla */
+    
+    /* Permitimos el scroll para que las cards no se corten */
     overflow-x: hidden; 
     overflow-y: auto; 
-    font-family: "DM Sans", sans-serif; 
-    min-height: 100vh;
+    
 }
 
 #animated-bg { 
-    position: fixed; 
+    position: fixed !important; /* <--- ESTO ES LO MÁS IMPORTANTE */
     top: 0;
     left: 0;
     width: 100vw;
     height: 100vh;
     z-index: -1;
-    /* Esto ayuda a que el fondo cubra áreas de sistema en móviles */
-    min-height: -webkit-fill-available;
+    pointer-events: none;
 }
 
 .content { 
@@ -46,6 +53,7 @@ body {
     justify-content: center; 
     color: white; 
     text-align: center; 
+
 }
 
 .titulo { 
@@ -58,4 +66,40 @@ body {
     pointer-events: auto; 
 }
 
+/* AJUSTE PARA QUE LOS TEXTOS NO SE SOLAPEN */
 
+@media screen and (max-width: 768px) {
+    /* 1. Subimos todo el bloque de contenido hacia el menú */
+
+    .content {
+        padding-top: 100px !important; 
+        display: flex !important;
+        flex-direction: column !important;
+        gap: 0px !important; /* Elimina el espacio automático entre hijos */
+    }
+
+    .content-info {
+        margin-bottom: 0px !important;
+        padding-bottom: 0px !important;
+    }
+
+    /* 2. Reducimos el espacio entre el título y el subtítulo */
+    .titulo {
+        font-size: 2.5rem !important; /* Un poco más pequeño para que no ocupe tanto */
+        margin-top: 40px !important;
+
+    }
+
+    /* 3. Reducimos el espacio entre el subtítulo y las cards */
+    .content p {
+        margin-top: 5px !important;
+        margin-bottom: 15px !important; /* Este es el "hueco" principal que quieres quitar */
+    }
+
+    /* 4. Si tienes un contenedor de tarjetas, lo pegamos más */
+    .card-container {
+        margin-top: 0 !important; /* Esto succiona las tarjetas hacia arriba */
+        padding-top: 0 !important;
+
+    }
+}

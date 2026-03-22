@@ -65,12 +65,12 @@
         position: fixed !important;
         top: 25px !important;
         /* Usamos un ancho fijo que quepa en cualquier móvil */
-        width: 93vw !important; 
-        max-width: 360px !important;
+        width: 95vw !important; 
+        max-width: 400px !important;
         left: 50% !important; /* Volvemos al clásico */
         right: 0 !important;
         margin: 0 !important; /* Centrado absoluto */
-        padding: 8px !important;
+        padding: 5px !important;
         box-sizing: border-box !important;
         transform: translateX(-50%); /* Forzamos el centrado manual */
         overflow: hidden !important; /* Para que la gota no estire el menú */

@@ -58,7 +58,7 @@
 
 .glass-button:hover { 
     background: rgba(255, 255, 255, 0.411); 
-    color: black; 
+    color: white; 
     backdrop-filter: blur(12px) saturate(var(--saturation));
     -webkit-backdrop-filter: blur(12px) saturate(var(--saturation));
     transform: scale(1.05);
